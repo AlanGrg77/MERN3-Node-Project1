@@ -2,12 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const connectToDatabase = require('./database/index');
 const Blog = require('./model/blogModel');
+const { storage, multer } = require('./middleware/multerConfig');
 const app = express();
 
 app.use(express.json())
 
 connectToDatabase()
 
+const upload = multer({storage : storage})
 
 app.get('/',(req,res)=>{
     // res.send("Hello Earth");
@@ -18,7 +20,7 @@ app.get('/',(req,res)=>{
     )
 })
 
-app.post('/blog', async (req,res)=>{
+app.post('/blog',upload.single("image"), async (req,res)=>{
     const {title,subtitle,description,image} = req.body;
     if(!title || !subtitle || !description || !image){
         return res.status(400).json(
