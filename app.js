@@ -10,7 +10,7 @@ var cors = require('cors')
 app.use(express.json());
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: ['http://localhost:5173','https://mern-3-react-project-1.vercel.app/'],
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }));
 
@@ -30,7 +30,7 @@ app.post("/blog", upload.single("image"), async (req, res) => {
   const { title, subtitle, description } = req.body;
   let filename;
   if(req.file){
-    filename = `http://localhost:3000/${req.file.filename}`;
+    filename = `https://mern3-node-project1.onrender.com/${req.file.filename}`;
   }else{
     filename = 'https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg'
   }
