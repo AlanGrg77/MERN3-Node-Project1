@@ -28,9 +28,12 @@ app.get("/", (req, res) => {
 
 app.post("/blog", upload.single("image"), async (req, res) => {
   const { title, subtitle, description } = req.body;
-  const filename = req.file.filename;
-  console.log(req.body);
-  console.log(req.file);
+  let filename;
+  if(req.file){
+    filename = `http://localhost:3000/${req.file.filename}`;
+  }else{
+    filename = 'https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg'
+  }
   if (!title || !subtitle || !description) {
     return res.status(400).json({
       message: "Please enter title, subtitle, description",
