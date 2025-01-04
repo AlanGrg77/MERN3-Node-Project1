@@ -10,8 +10,8 @@ var cors = require('cors')
 app.use(express.json());
 
 app.use(cors({
-  origin: ['http://localhost:5173','https://mern-3-react-project-1.vercel.app/'],
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  origin: ['http://localhost:5173','https://mern-3-react-project-1.vercel.app'],
+ 
 }));
 
 
