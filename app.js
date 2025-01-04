@@ -90,7 +90,7 @@ app.patch("/blog/:id", upload.single("image"), async (req, res) => {
   const blog = Blog.findById(id);
   let ImageName = blog.image; //if no change in image
   if (req.file) {
-    ImageName = req.file.filename; // if there is change in image then take the filename from req.file
+    ImageName = `https://mern3-node-project1.onrender.com/${req.file.filename}` ; // if there is change in image then take the filename from req.file
     const OldImageName = blog.image;
     fs.unlink(`./storage/${OldImageName}`, (err) => {
       if (err) {
