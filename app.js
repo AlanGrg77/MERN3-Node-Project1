@@ -10,7 +10,7 @@ var cors = require('cors')
 app.use(express.json());
 
 app.use(cors({
-  origin: ['http://localhost:5173','https://mern-3-react-project-1.vercel.app'],
+  origin: ['http://localhost:5173','https://mern-3-react-project-1.vercel.app','https://mern-3-react-project-1-iird2ns9j-alangrg77s-projects.vercel.app'],
  
 }));
 
