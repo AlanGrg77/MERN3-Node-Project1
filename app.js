@@ -10,7 +10,7 @@ var cors = require('cors')
 app.use(express.json());
 
 app.use(cors({
-  origin: ['http://localhost:5173','https://mern-3-react-project-1.vercel.app'],
+  origin: ['http://localhost:5173','https://mern-3-react-project-1.vercel.app/'],
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }));
 
@@ -30,7 +30,7 @@ app.post("/blog", upload.single("image"), async (req, res) => {
   const { title, subtitle, description } = req.body;
   let filename;
   if(req.file){
-    filename = `https://mern3-node-project1.onrender.com/${req.file.filename}`;
+    filename = 'https://mern3-node-project1.onrender.com/' + req.file.filename;
   }else{
     filename = 'https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg'
   }
@@ -90,7 +90,7 @@ app.patch("/blog/:id", upload.single("image"), async (req, res) => {
   const blog = Blog.findById(id);
   let ImageName = blog.image; //if no change in image
   if (req.file) {
-    ImageName = `https://mern3-node-project1.onrender.com/${req.file.filename}` ; // if there is change in image then take the filename from req.file
+    ImageName = 'https://mern3-node-project1.onrender.com/' + req.file.filename ; // if there is change in image then take the filename from req.file
     const OldImageName = blog.image;
     fs.unlink(`./storage/${OldImageName}`, (err) => {
       if (err) {
