@@ -87,7 +87,7 @@ app.delete("/blog/:id", async (req, res) => {
 app.patch("/blog/:id", upload.single("image"), async (req, res) => {
   const { id } = req.params;
   const { title, subtitle, description } = req.body;
-  const blog = Blog.findById(id);
+  const blog = await Blog.findById(id);
   let ImageName = blog.image; //if no change in image
   if (req.file) {
     ImageName = 'https://mern3-node-project1.onrender.com/' + req.file.filename ; // if there is change in image then take the filename from req.file
@@ -113,7 +113,7 @@ app.patch("/blog/:id", upload.single("image"), async (req, res) => {
   });
 });
 
-app.use(express.static("./storage"));
+app.use(express.static("/storage"));
 
 app.listen(process.env.PORT, () => {
   console.log("Node project started");
