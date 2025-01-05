@@ -71,7 +71,7 @@ app.delete("/blog/:id", async (req, res) => {
   const { id } = req.params;
   const blog = await Blog.findById(id);
   const ImageName = blog.image;
-  fs.unlink(`./storage/${ImageName}`, (err) => {
+  fs.unlink(`storage/${ImageName}`, (err) => {
     if (err) {
       console.log(err);
     } else {
@@ -92,7 +92,7 @@ app.patch("/blog/:id", upload.single("image"), async (req, res) => {
   if (req.file) {
     ImageName = 'https://mern3-node-project1.onrender.com/' + req.file.filename ; // if there is change in image then take the filename from req.file
     const OldImageName = blog.image;
-    fs.unlink(`./storage/${OldImageName}`, (err) => {
+    fs.unlink(`storage/${OldImageName}`, (err) => {
       if (err) {
         console.log(err);
       } else {
