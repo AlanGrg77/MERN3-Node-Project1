@@ -113,7 +113,7 @@ app.patch("/blog/:id", upload.single("image"), async (req, res) => {
   });
 });
 
-app.use(express.static("/storage"));
+app.use(express.static("./storage"));
 
 app.listen(process.env.PORT, () => {
   console.log("Node project started");
